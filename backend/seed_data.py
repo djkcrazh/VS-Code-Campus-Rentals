@@ -16,23 +16,27 @@ PRINCETON_LOCATIONS = [
     {"name": "McCosh Hall", "lat": 40.3485, "lng": -74.6579},
 ]
 
-def generate_placeholder_image(category, index):
-    """Generate category-specific image URLs using Unsplash"""
-    # Map categories to Unsplash search terms
-    category_keywords = {
-        "Photography": "camera-dslr-photography",
-        "Electronics": "electronics-gadgets",
-        "Tools": "tools-hardware",
-        "Fashion": "formal-wear-suit",
-        "Sports": "sports-equipment",
-        "Party Supplies": "party-celebration",
-        "Academic": "books-textbooks",
-        "Transportation": "bicycle-scooter"
-    }
+def get_local_images(folder_name):
+    """Get local image URLs from static folder"""
+    import os
+    import glob
 
-    keyword = category_keywords.get(category, "product")
-    # Use Unsplash source API with specific search terms
-    return f"https://source.unsplash.com/800x600/?{keyword}&sig={index}"
+    image_dir = f"static/images/{folder_name}"
+    if not os.path.exists(image_dir):
+        # Return placeholder URL if folder doesn't exist yet
+        return [f"http://localhost:8000/static/images/{folder_name}/placeholder.jpg"]
+
+    # Get all image files in the folder
+    image_files = []
+    for ext in ['*.jpg', '*.jpeg', '*.png', '*.gif']:
+        image_files.extend(glob.glob(os.path.join(image_dir, ext)))
+
+    # If no images found, return placeholder
+    if not image_files:
+        return [f"http://localhost:8000/static/images/{folder_name}/placeholder.jpg"]
+
+    # Convert to URLs
+    return [f"http://localhost:8000/static/images/{folder_name}/{os.path.basename(f)}" for f in sorted(image_files)]
 
 CATEGORIES_DATA = [
     {"name": "Electronics", "icon": "📱"},
@@ -107,69 +111,18 @@ SAMPLE_ITEMS = [
         "condition": "Excellent",
         "categories": ["Photography", "Electronics"],
         "insurance_value": 2500.0,
+        "image_folder": "camera",
     },
     {
-        "title": "Formal Tuxedo (40R)",
-        "description": "Black tuxedo with bow tie and cummerbund. Perfect for formals, galas, or interviews. Dry cleaned after each use.",
-        "daily_rate": 25.0,
-        "weekly_rate": 80.0,
-        "deposit": 100.0,
+        "title": "Electric Bike - Rad Power RadRunner",
+        "description": "Electric bike with pedal assist and throttle. 45-mile range, perfect for campus commuting or exploring Princeton. Helmet and lock included.",
+        "daily_rate": 30.0,
+        "weekly_rate": 150.0,
+        "deposit": 300.0,
         "condition": "Excellent",
-        "categories": ["Fashion"],
-    },
-    {
-        "title": "DeWalt Cordless Drill Set",
-        "description": "20V MAX drill/driver with 2 batteries and charger. Includes drill bits and carrying case. Perfect for DIY projects or dorm furniture assembly.",
-        "daily_rate": 15.0,
-        "weekly_rate": 60.0,
-        "deposit": 80.0,
-        "condition": "Good",
-        "categories": ["Tools"],
-    },
-    {
-        "title": "Textbook: Organic Chemistry 8th Ed",
-        "description": "Klein's Organic Chemistry textbook in great condition. All chapters intact, minimal highlighting. Save hundreds vs buying new!",
-        "daily_rate": 3.0,
-        "weekly_rate": 15.0,
-        "deposit": 50.0,
-        "condition": "Good",
-        "categories": ["Academic"],
-    },
-    {
-        "title": "Professional DJ Speaker System",
-        "description": "JBL EON615 powered speakers (pair) with stands and cables. 1000W total power. Perfect for parties, events, or performances.",
-        "daily_rate": 60.0,
-        "weekly_rate": 300.0,
-        "deposit": 400.0,
-        "condition": "Excellent",
-        "categories": ["Party Supplies", "Electronics"],
-    },
-    {
-        "title": "Mountain Bike - Trek Marlin 7",
-        "description": "2022 Trek Marlin 7 in great condition. Perfect for campus commuting or trail riding. Helmet included.",
-        "daily_rate": 20.0,
-        "weekly_rate": 100.0,
-        "deposit": 200.0,
-        "condition": "Good",
-        "categories": ["Transportation", "Sports"],
-    },
-    {
-        "title": "Nintendo Switch + Popular Games",
-        "description": "Nintendo Switch console with Mario Kart, Zelda BOTW, and Smash Bros. Includes 2 controllers and dock.",
-        "daily_rate": 15.0,
-        "weekly_rate": 70.0,
-        "deposit": 150.0,
-        "condition": "Good",
-        "categories": ["Electronics"],
-    },
-    {
-        "title": "Cocktail Party Kit (Shaker, Glasses, Tools)",
-        "description": "Complete bartending set with shaker, jigger, strainer, muddler, and 12 cocktail glasses. Perfect for room parties!",
-        "daily_rate": 10.0,
-        "weekly_rate": 40.0,
-        "deposit": 50.0,
-        "condition": "Excellent",
-        "categories": ["Party Supplies"],
+        "categories": ["Transportation"],
+        "insurance_value": 1500.0,
+        "image_folder": "bike",
     },
     {
         "title": "Electric Skateboard - Boosted Mini",
@@ -179,6 +132,8 @@ SAMPLE_ITEMS = [
         "deposit": 300.0,
         "condition": "Good",
         "categories": ["Transportation"],
+        "insurance_value": 750.0,
+        "image_folder": "skateboard",
     },
     {
         "title": "GoPro Hero 11 + Accessories",
@@ -188,96 +143,30 @@ SAMPLE_ITEMS = [
         "deposit": 200.0,
         "condition": "Excellent",
         "categories": ["Photography", "Electronics"],
+        "insurance_value": 500.0,
+        "image_folder": "gopro",
     },
     {
-        "title": "Formal Dress - Black Evening Gown (Size 6)",
-        "description": "Elegant floor-length black gown perfect for formals and galas. Fits size 4-6. Professionally cleaned.",
-        "daily_rate": 30.0,
-        "weekly_rate": 100.0,
-        "deposit": 150.0,
-        "condition": "Excellent",
-        "categories": ["Fashion"],
-    },
-    {
-        "title": "Camping Gear Bundle (Tent, Sleeping Bag, Pad)",
-        "description": "Complete camping setup for 2 people. REI tent, mummy sleeping bag rated to 20°F, and sleeping pad.",
-        "daily_rate": 25.0,
-        "weekly_rate": 110.0,
-        "deposit": 150.0,
-        "condition": "Good",
-        "categories": ["Sports"],
-    },
-    {
-        "title": "Projector + Screen Combo",
-        "description": "1080p projector with 100-inch portable screen. Perfect for movie nights or presentations. Includes HDMI cable.",
-        "daily_rate": 20.0,
-        "weekly_rate": 85.0,
-        "deposit": 150.0,
-        "condition": "Good",
-        "categories": ["Electronics", "Party Supplies"],
-    },
-    {
-        "title": "Complete Tool Kit (50+ pieces)",
-        "description": "Professional tool set with hammers, screwdrivers, pliers, wrenches, and more. Everything you need for repairs or assembly.",
-        "daily_rate": 12.0,
-        "weekly_rate": 50.0,
+        "title": "Wilson Pro Staff Tennis Racket",
+        "description": "Professional-grade tennis racket in excellent condition. Perfect for campus courts or club matches. Comes with case and new grip.",
+        "daily_rate": 8.0,
+        "weekly_rate": 35.0,
         "deposit": 75.0,
-        "condition": "Good",
-        "categories": ["Tools"],
-    },
-    {
-        "title": "Longboard - Loaded Tan Tien",
-        "description": "Premium carving longboard in excellent condition. Smooth ride for campus cruising. Helmet included.",
-        "daily_rate": 10.0,
-        "weekly_rate": 45.0,
-        "deposit": 100.0,
         "condition": "Excellent",
-        "categories": ["Transportation", "Sports"],
+        "categories": ["Sports"],
+        "insurance_value": 200.0,
+        "image_folder": "tennis",
     },
     {
-        "title": "DSLR Lighting Kit (3-Point Setup)",
-        "description": "Professional 3-point lighting setup with softboxes, stands, and LED bulbs. Perfect for video production or photography.",
-        "daily_rate": 18.0,
-        "weekly_rate": 75.0,
-        "deposit": 120.0,
-        "condition": "Good",
-        "categories": ["Photography"],
-    },
-    {
-        "title": "Karaoke Machine + Wireless Mics",
-        "description": "Bluetooth karaoke system with 2 wireless mics, LED lights, and built-in screen. Party essential!",
-        "daily_rate": 20.0,
-        "weekly_rate": 85.0,
-        "deposit": 100.0,
-        "condition": "Good",
-        "categories": ["Party Supplies", "Electronics"],
-    },
-    {
-        "title": "Men's Designer Suit (42L)",
-        "description": "Hugo Boss navy suit, tailored fit. Perfect for interviews, presentations, or formal events.",
-        "daily_rate": 35.0,
-        "weekly_rate": 140.0,
-        "deposit": 200.0,
-        "condition": "Excellent",
-        "categories": ["Fashion"],
-    },
-    {
-        "title": "Electric Scooter - Xiaomi Mi",
-        "description": "Xiaomi Mi Electric Scooter with 18.6 mile range. Foldable and portable. Great for getting around campus quickly.",
-        "daily_rate": 15.0,
-        "weekly_rate": 70.0,
-        "deposit": 150.0,
-        "condition": "Good",
-        "categories": ["Transportation"],
-    },
-    {
-        "title": "Textbook Bundle: Calculus I & II",
-        "description": "Stewart's Calculus textbooks (8th edition) for both semesters. Minimal wear, all content intact.",
-        "daily_rate": 4.0,
-        "weekly_rate": 20.0,
-        "deposit": 80.0,
+        "title": "Textbook: Organic Chemistry 8th Ed",
+        "description": "Klein's Organic Chemistry textbook in great condition. All chapters intact, minimal highlighting. Save hundreds vs buying new!",
+        "daily_rate": 3.0,
+        "weekly_rate": 15.0,
+        "deposit": 50.0,
         "condition": "Good",
         "categories": ["Academic"],
+        "insurance_value": 150.0,
+        "image_folder": "textbook",
     },
 ]
 
@@ -333,12 +222,9 @@ def seed_database():
         owner = users[i % len(users)]
         location = PRINCETON_LOCATIONS[i % len(PRINCETON_LOCATIONS)]
 
-        # Generate placeholder images for each item
-        category_name = item_data["categories"][0] if item_data["categories"] else "item"
-        images = [
-            generate_placeholder_image(category_name, i * 3 + j)
-            for j in range(random.randint(2, 4))  # 2-4 images per item
-        ]
+        # Get local images for each item using the image_folder
+        image_folder = item_data.get("image_folder", "default")
+        images = get_local_images(image_folder)
 
         item = Item(
             owner_id=owner.id,

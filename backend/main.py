@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException, status, UploadFile, File, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from datetime import datetime, timedelta
@@ -10,6 +11,7 @@ import qrcode
 import io
 import base64
 from math import radians, cos, sin, asin, sqrt
+import os
 
 from database import (
     get_db, init_db, User, Category, Item, Rental, Review,
@@ -21,6 +23,12 @@ from auth import (
 )
 
 app = FastAPI(title="Campus Rentals API")
+
+# Create static directory if it doesn't exist
+os.makedirs("static/images", exist_ok=True)
+
+# Mount static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # CORS middleware
 app.add_middleware(
