@@ -42,12 +42,13 @@ function Register({ onLogin }) {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white px-4 py-12">
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center space-x-2 mb-6">
-            <div className="w-12 h-12 bg-primary-500 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-2xl">CR</span>
+          <Link to="/" className="inline-flex items-center space-x-3 mb-6">
+            <div className="w-14 h-14 bg-primary-500 rounded-xl flex items-center justify-center shadow-lg">
+              <span className="text-3xl">🐯</span>
             </div>
-            <span className="text-2xl font-bold text-gray-900">
-              Campus<span className="text-primary-500">Rentals</span>
+            <span className="text-2xl font-bold">
+              <span className="text-primary-500">Tiger</span>
+              <span className="text-gray-900">Rentals</span>
             </span>
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h1>

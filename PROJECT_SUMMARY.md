@@ -1,4 +1,4 @@
-# Campus Rentals - Project Summary
+# TigerRentals - Project Summary
 
 ## 📋 What We Built
 

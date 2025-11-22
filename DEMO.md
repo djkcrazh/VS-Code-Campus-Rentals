@@ -1,6 +1,6 @@
-# 🎬 Campus Rentals - Demo Guide
+# 🎬 TigerRentals - Demo Guide
 
-This guide will help you deliver an impressive demo of Campus Rentals for your hackathon presentation.
+This guide will help you deliver an impressive demo of TigerRentals for your hackathon presentation.
 
 ---
 
@@ -39,7 +39,7 @@ npm run dev
 ## 🎯 5-Minute Demo Script
 
 ### Scene 1: The Problem (30 seconds)
-"Students spend hundreds on items they'll only use once - formal wear, cameras, textbooks. Meanwhile, others have these items sitting unused in their dorms. Campus Rentals connects them."
+"Students spend hundreds on items they'll only use once - formal wear, cameras, textbooks. Meanwhile, others have these items sitting unused in their dorms. TigerRentals connects them."
 
 **Action:** Show landing page
 - Point out the clean design with Princeton orange
@@ -215,7 +215,7 @@ Log out → Log in as alex.chen@princeton.edu / password123
 
 ## 🎤 Sample Pitch (60 seconds)
 
-"Campus Rentals solves a $24 billion problem: students buying expensive items they'll only use once.
+"TigerRentals solves a $24 billion problem: students buying expensive items they'll only use once.
 
 We're a peer-to-peer marketplace where students can rent anything from cameras to formal wear, power tools to textbooks - all from other students on campus.
 

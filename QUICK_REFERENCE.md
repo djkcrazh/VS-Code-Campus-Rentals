@@ -1,4 +1,4 @@
-# Campus Rentals - Quick Reference Card
+# TigerRentals - Quick Reference Card
 
 ## 🚀 One-Command Start
 ```bash
@@ -72,7 +72,7 @@ All users: password123
 - Target: 20M college students
 
 ## 🎤 30-Second Pitch
-"Campus Rentals is a peer-to-peer marketplace where students rent out items they're not using. Renters save money, owners earn $300-$800/semester. We make it safe with $2K insurance, QR verification, and .edu-only access. 15% commission model. Starting at Princeton, expanding to 20M college students nationwide."
+"TigerRentals is a peer-to-peer marketplace where students rent out items they're not using. Renters save money, owners earn $300-$800/semester. We make it safe with $2K insurance, QR verification, and .edu-only access. 15% commission model. Starting at Princeton, expanding to 20M college students nationwide."
 
 ## 📞 Troubleshooting
 **Backend won't start:**

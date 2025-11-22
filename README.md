@@ -1,4 +1,4 @@
-# 🎓 Campus Rentals
+# 🎓 TigerRentals
 
 **A peer-to-peer marketplace for college students to rent out their unused items to other students.**
 
@@ -459,7 +459,7 @@ For questions or issues:
 ## 🎉 Demo Day Presentation Tips
 
 **30-Second Pitch:**
-"Campus Rentals is a peer-to-peer marketplace where students can rent out items they're not using and earn $300-$800 per semester. From cameras to textbooks, bikes to formal wear - everything is available right on campus. We solve the problem of expensive one-time purchases while helping students make passive income. Built with FastAPI and React, fully functional with QR verification, insurance, and real-time messaging."
+"TigerRentals is a peer-to-peer marketplace where students can rent out items they're not using and earn $300-$800 per semester. From cameras to textbooks, bikes to formal wear - everything is available right on campus. We solve the problem of expensive one-time purchases while helping students make passive income. Built with FastAPI and React, fully functional with QR verification, insurance, and real-time messaging."
 
 **Live Demo Flow:**
 1. Show landing page (emphasize design and value prop)

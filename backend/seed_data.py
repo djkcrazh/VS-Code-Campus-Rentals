@@ -17,10 +17,22 @@ PRINCETON_LOCATIONS = [
 ]
 
 def generate_placeholder_image(category, index):
-    """Generate placeholder image URLs using picsum.photos"""
-    seed = hash(f"{category}{index}") % 1000
-    # Use different image sizes and seeds for variety
-    return f"https://picsum.photos/seed/{seed}/800/600"
+    """Generate category-specific image URLs using Unsplash"""
+    # Map categories to Unsplash search terms
+    category_keywords = {
+        "Photography": "camera-dslr-photography",
+        "Electronics": "electronics-gadgets",
+        "Tools": "tools-hardware",
+        "Fashion": "formal-wear-suit",
+        "Sports": "sports-equipment",
+        "Party Supplies": "party-celebration",
+        "Academic": "books-textbooks",
+        "Transportation": "bicycle-scooter"
+    }
+
+    keyword = category_keywords.get(category, "product")
+    # Use Unsplash source API with specific search terms
+    return f"https://source.unsplash.com/800x600/?{keyword}&sig={index}"
 
 CATEGORIES_DATA = [
     {"name": "Electronics", "icon": "📱"},

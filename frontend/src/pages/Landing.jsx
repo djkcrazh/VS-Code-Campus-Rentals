@@ -127,7 +127,7 @@ function Landing() {
       <div className="bg-gradient-to-b from-gray-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-            Why Campus Rentals?
+            Why TigerRentals?
           </h2>
           <p className="text-center text-gray-600 mb-12">
             Safe, simple, and profitable for the entire campus community
@@ -230,7 +230,7 @@ function Landing() {
             Built with Claude • Princeton University
           </p>
           <p className="text-sm">
-            © 2024 Campus Rentals. All rights reserved.
+            © 2024 TigerRentals. All rights reserved.
           </p>
         </div>
       </footer>
