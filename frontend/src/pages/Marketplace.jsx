@@ -118,24 +118,6 @@ function Marketplace({ user }) {
             </button>
           </div>
         </div>
-
-        {/* Distance Filter */}
-        <div className="mt-4 flex items-center space-x-4">
-          <MapPin size={20} className="text-gray-400" />
-          <label className="text-sm text-gray-700">Max Distance:</label>
-          <input
-            type="range"
-            min="1"
-            max="20"
-            value={filters.max_distance}
-            onChange={(e) => {
-              setFilters({ ...filters, max_distance: parseInt(e.target.value) });
-              loadItems();
-            }}
-            className="flex-1 max-w-xs"
-          />
-          <span className="text-sm font-semibold text-gray-900 w-16">{filters.max_distance} mi</span>
-        </div>
       </form>
 
       {/* Categories */}

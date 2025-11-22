@@ -44,7 +44,7 @@ function ItemDetail({ user }) {
     const end = new Date(rentalDates.end_date);
     const days = differenceInDays(end, start);
 
-    if (days < 1) return { days: 0, total: 0, deposit: 0, platformFee: 0 };
+    if (days < 1) return { days: 0, total: 0, platformFee: 0 };
 
     const total = item.daily_rate * days;
     const platformFee = total * 0.15;
@@ -52,7 +52,6 @@ function ItemDetail({ user }) {
     return {
       days,
       total,
-      deposit: item.deposit,
       platformFee,
       ownerEarns: total - platformFee,
     };
@@ -278,19 +277,12 @@ function ItemDetail({ user }) {
                         <span className="text-gray-600">Platform fee (15%)</span>
                         <span className="font-semibold">${cost.platformFee.toFixed(2)}</span>
                       </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Security deposit</span>
-                        <span className="font-semibold">${cost.deposit.toFixed(2)}</span>
-                      </div>
                       <div className="border-t border-gray-300 pt-2 mt-2 flex justify-between">
                         <span className="font-bold text-gray-900">Total</span>
                         <span className="font-bold text-primary-500 text-lg">
-                          ${(cost.total + cost.deposit).toFixed(2)}
+                          ${cost.total.toFixed(2)}
                         </span>
                       </div>
-                      <p className="text-xs text-gray-500 mt-2">
-                        Deposit will be refunded after successful return
-                      </p>
                     </div>
                   )}
 

@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from database import SessionLocal, init_db, User, Category, Item, Rental, Review, Transaction, Message
 from auth import get_password_hash
 import random
+import base64
 
 PRINCETON_LOCATIONS = [
     {"name": "Butler College", "lat": 40.3453, "lng": -74.6557},
@@ -14,6 +15,12 @@ PRINCETON_LOCATIONS = [
     {"name": "Frist Campus Center", "lat": 40.3478, "lng": -74.6553},
     {"name": "McCosh Hall", "lat": 40.3485, "lng": -74.6579},
 ]
+
+def generate_placeholder_image(category, index):
+    """Generate placeholder image URLs using picsum.photos"""
+    seed = hash(f"{category}{index}") % 1000
+    # Use different image sizes and seeds for variety
+    return f"https://picsum.photos/seed/{seed}/800/600"
 
 CATEGORIES_DATA = [
     {"name": "Electronics", "icon": "📱"},
@@ -314,6 +321,13 @@ def seed_database():
         owner = users[i % len(users)]
         location = PRINCETON_LOCATIONS[i % len(PRINCETON_LOCATIONS)]
 
+        # Generate placeholder images for each item
+        category_name = item_data["categories"][0] if item_data["categories"] else "item"
+        images = [
+            generate_placeholder_image(category_name, i * 3 + j)
+            for j in range(random.randint(2, 4))  # 2-4 images per item
+        ]
+
         item = Item(
             owner_id=owner.id,
             title=item_data["title"],
@@ -327,6 +341,7 @@ def seed_database():
             longitude=location["lng"],
             location_name=location["name"],
             insurance_value=item_data.get("insurance_value", 2000.0),
+            images=json.dumps(images),
         )
         db.add(item)
         db.flush()
